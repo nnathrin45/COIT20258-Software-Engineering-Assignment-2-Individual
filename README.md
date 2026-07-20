@@ -96,3 +96,8 @@ javac --module-path /path/to/JavaFX/lib --add-modules javafx.controls,javafx.fxm
 
 # Run JUnit Test Suites
 java --module-path /path/to/JavaFX/lib --add-modules javafx.controls,javafx.fxml -jar junit-platform-console-standalone.jar execute --class-path build --scan-classpath
+
+📝 Prototype Reflections & Future Scope
+Storage Layer: Current state utilizes an volatile in-memory storage strategy. Future roadmap targets transitioning into persistent relational data schemas (e.g., SQLite/MySQL).
+
+Role-based Authentication: Instead of a structural gated login system, roles are currently cleanly simulated via isolated, dedicated operational workflow screens (Officer views vs. Manager views).
