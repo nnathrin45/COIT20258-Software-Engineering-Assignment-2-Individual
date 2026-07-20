@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.AssessSeverityController"
+      prefWidth="900" prefHeight="850"
+      style="-fx-background-color: #F5F5F5;">
+
+    <HBox alignment="CENTER" prefHeight="50" style="-fx-background-color: #1B2A47;">
+        <Label text="Disaster Response System (DRS)"
+               style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <HBox style="-fx-background-color: #2C3E5C;" spacing="0">
+        <padding><Insets top="6" bottom="6" left="20" right="20"/></padding>
+        <Button text="Report" onAction="#goReport"
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-padding: 4 12 4 12;"/>
+        <Button text="Assess" onAction="#goAssess"
+                style="-fx-background-color: #1B2A47; -fx-text-fill: white;
+                       -fx-padding: 4 12 4 12; -fx-font-weight: bold;"/>
+        <Button text="Assign" onAction="#goAssign"
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-padding: 4 12 4 12;"/>
+        <Button text="Update" onAction="#goUpdate"
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-padding: 4 12 4 12;"/>
+        <Button text="Dashboard" onAction="#goDashboard"
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-padding: 4 12 4 12;"/>
+    </HBox>
+
+    <VBox spacing="15">
+        <padding><Insets top="20" right="30" bottom="15" left="30"/></padding>
+
+        <Label text="Assess Disaster Severity"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1B2A47;"/>
+
+        <!-- Select Incident -->
+        <VBox spacing="12" style="-fx-background-color: white; -fx-border-color: #CCCCCC;
+                                  -fx-border-width: 1; -fx-border-radius: 4;">
+            <padding><Insets top="20" right="25" bottom="20" left="25"/></padding>
+
+            <Label text="Select Incident" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+            <Separator/>
+
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Incident *" prefWidth="160" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="incidentBox" prefWidth="450"
+                          promptText="-- Select an incident --" onAction="#handleIncidentSelected"/>
+                <Button text="Refresh" onAction="#handleRefresh" style="-fx-padding: 4 12 4 12;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Incident Details -->
+        <VBox spacing="10" style="-fx-background-color: white; -fx-border-color: #CCCCCC;
+                                  -fx-border-width: 1; -fx-border-radius: 4;">
+            <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
+
+            <Label text="INCIDENT DETAILS" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #555555;"/>
+            <Separator/>
+
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Disaster Type:" prefWidth="160" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="typeField" prefWidth="500" editable="false"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Location:" prefWidth="160" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="locationField" prefWidth="500" editable="false"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Reported At:" prefWidth="160" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="reportedAtField" prefWidth="500" editable="false"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Current Status:" prefWidth="160" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="statusField" prefWidth="500" editable="false"/>
+            </HBox>
+            <HBox spacing="20">
+                <Label text="Description:" prefWidth="160" style="-fx-font-weight: bold;"/>
+                <TextArea fx:id="descriptionArea" prefWidth="500" prefRowCount="3"
+                          editable="false" wrapText="true"/>
+            </HBox>
+        </VBox>
+
+        <!-- Assessment Form -->
+        <VBox spacing="12" style="-fx-background-color: white; -fx-border-color: #CCCCCC;
+                                  -fx-border-width: 1; -fx-border-radius: 4;">
+            <padding><Insets top="20" right="25" bottom="20" left="25"/></padding>
+
+            <Label text="Severity Assessment" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+            <Separator/>
+
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Severity Level *" prefWidth="160" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="severityBox" prefWidth="380"
+                          promptText="-- Select severity level --"/>
+            </HBox>
+
+            <HBox spacing="20">
+                <Label text="Assessment Notes *" prefWidth="160" style="-fx-font-weight: bold;"/>
+                <TextArea fx:id="notesArea" prefWidth="500" prefRowCount="4"
+                          promptText="Describe the basis for this assessment..." wrapText="true"/>
+            </HBox>
+
+            <HBox>
+                <Region prefWidth="180"/>
+                <Label text="* Required fields"
+                       style="-fx-text-fill: #C0392B; -fx-font-style: italic; -fx-font-size: 11px;"/>
+            </HBox>
+        </VBox>
+
+        <HBox spacing="12">
+            <Button text="Save Assessment" onAction="#handleSave" prefWidth="160"
+                    style="-fx-background-color: #1B2A47; -fx-text-fill: white;
+                           -fx-font-weight: bold; -fx-padding: 8 16 8 16;"/>
+            <Button text="Clear" onAction="#handleClear" prefWidth="100" style="-fx-padding: 8 16 8 16;"/>
+            <Button text="Cancel" onAction="#handleCancel" prefWidth="100"
+                    style="-fx-background-color: white; -fx-padding: 8 16 8 16;"/>
+        </HBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-border-color: #CCCCCC;
+                                  -fx-border-width: 1; -fx-border-radius: 4;">
+            <padding><Insets top="15" right="25" bottom="15" left="25"/></padding>
+            <Label text="CONFIRMATION" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #555555;"/>
+            <Separator/>
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Message:" prefWidth="180" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="messageField" prefWidth="500"
+                           promptText="-- Awaiting assessment --" editable="false"/>
+            </HBox>
+        </VBox>
+    </VBox>
+
+    <Region VBox.vgrow="ALWAYS"/>
+    <HBox alignment="CENTER_LEFT" spacing="8" prefHeight="28"
+          style="-fx-background-color: #E8E8E8; -fx-border-color: #CCCCCC; -fx-border-width: 1 0 0 0;">
+        <padding><Insets left="15" right="15"/></padding>
+        <Circle radius="5" fill="#27AE60"/>
+        <Label text="System Online | User: Assessment Officer | Session Active"
+               style="-fx-font-size: 11px; -fx-text-fill: #555555;"/>
+    </HBox>
+
+</VBox>
