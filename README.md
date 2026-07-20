@@ -44,6 +44,7 @@ DRS/
 │   └── data/          # Data Layer (Shared In-Memory DataStore)
 └── test/              # Unit Tests (JUnit 5 Suite)
 
+
 ### Core Architecture Components:
 * **View Layer:** `ReportDisaster.fxml`, `AssessSeverity.fxml`, `AssignTeam.fxml`, `UpdateStatus.fxml`, `Dashboard.fxml`
 * **Controller Layer:** Handles UI events, input validation, and channels data flow to the Model.
@@ -98,6 +99,6 @@ javac --module-path /path/to/JavaFX/lib --add-modules javafx.controls,javafx.fxm
 java --module-path /path/to/JavaFX/lib --add-modules javafx.controls,javafx.fxml -jar junit-platform-console-standalone.jar execute --class-path build --scan-classpath
 
 📝 Prototype Reflections & Future Scope
-Storage Layer: Current state utilizes an volatile in-memory storage strategy. Future roadmap targets transitioning into persistent relational data schemas (e.g., SQLite/MySQL).
+- Storage Layer: Current state utilizes an volatile in-memory storage strategy. Future roadmap targets transitioning into persistent relational data schemas (e.g., SQLite/MySQL).
 
-Role-based Authentication: Instead of a structural gated login system, roles are currently cleanly simulated via isolated, dedicated operational workflow screens (Officer views vs. Manager views).
+- Role-based Authentication: Instead of a structural gated login system, roles are currently cleanly simulated via isolated, dedicated operational workflow screens (Officer views vs. Manager views).
